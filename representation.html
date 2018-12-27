@@ -1,0 +1,379 @@
+<!doctype html>
+<html>
+<head>
+    <style>
+     * {
+	 box-sizing: border-box;
+     }
+     body {
+	 display: flex;
+	 flex-direction: row;
+
+
+	 font-family: helvetica, arial, sans;
+	 padding: 2%;
+     }
+     a {
+	 color: #008eb3;
+     }
+     header {
+	 font-size: 3em;
+	 font-weight: bold;
+	 text-align: center;
+	 background-color: #008eb3;
+	 color: white;
+	 padding: 2%;
+	 margin: 2% 0 2% 0;
+     }
+     intro {
+	 margin: 2%;
+     }
+     content {
+	 display: flex;
+	 flex-direction: column;
+	 width: 50%;
+     }
+     svg {
+	 width: 80%;
+	 height: 330px;
+	 margin: 2%;
+     }
+     col {
+	 width: 35%;
+     }
+     nav {
+
+	 border: 1px dashed #bb8f5b;
+	 margin: 5%;
+	 padding: 1% 1% 1% 0;
+	 
+     }
+     footer {
+	 margin: 3% 0
+     }
+     ul {
+	 list-style: none;
+	 
+     }
+     li {
+	 margin: 3%
+     }
+     a {
+	 color: #008eb3;
+	 text-decoration: none;
+     }
+     a:hover {
+	 text-decoration: underline;
+     }
+     button:hover {
+	 background-color: #f4656d;
+     }
+
+     rect {
+	 fill:ghostwhite;
+	 stroke-width:1;
+	 stroke:#a7e5e0;
+	 opacity: 0.8;
+     }
+     line {
+	 stroke:#a7e5e0;stroke-width:1
+     }
+     text {
+	 font-size: 1.5em;
+	 font-weight: bold;
+     }
+     courtesy {
+	 font-color: #bb8f5b
+     }
+     button {
+	 background-color: #e4dbbe;
+	 padding: 1% 2%;
+	 margin: 2px;
+	 border: none;
+     }
+     table {
+	 width: 60%;
+	 margin: 5% 20%
+     }
+     table, th, td {	 
+	 text-align:center;
+	 border-collapse: collapse;
+	 border: 1px solid black;	 
+     }
+     .game {
+	 background-color: ghostwhite;
+	 padding: 2% 2%;
+	 display: inline-block;
+	 border-radius: 10px;
+     }
+     .game1 {
+	 color:#f4656d;
+	 font-size:2vw;	 
+     }
+
+     .game2 {
+	 font-size: 2vw;
+	 color:#008eb3;
+     }
+     .ans {
+	 color: #008eb3;
+     }
+    </style>
+
+</head>
+<body>
+
+    <div class="content">
+	
+	<header>Strategy Representation</header>
+	<div class="intro"> 	
+	    
+	    <p>
+In this project we would use finite state machine to represent a strategy. The best way to explain that is to use an example.
+	    </p>
+	    
+	    <div>  <p class="cap" style="display: inline">
+		Here is the payoff matrix of the game.
+	    </p></div>
+	</div>
+	<div class="frame">
+	    <svg>
+		<rect x="5%" y="20" width="30%" height="80"/>
+		<rect x="35%" y="20" width="30%" height="80"/>
+		<rect x="65%" y="20" width="30%" height="80"/>
+		
+		<line x1="5%" y1="20" x2="35%" y2="100"/> 
+		
+		<rect x="5%" y="100" width="30%" height="80"/>
+		<rect x="35%" y="100" width="30%" height="80"/>
+		<rect x="65%" y="100" width="30%" height="80"/>
+		
+		<rect x="5%" y="180" width="30%" height="80"/>
+		<rect x="35%" y="180" width="30%" height="80"/>
+		<rect x="65%" y="180" width="30%" height="80"/>
+
+		<text x="25%" y="50" fill="#f4656d" opacity="1">P2</text>
+		<text x="10%" y="70" fill="#008eb3" opacity="1">P1</text>
+		<text class="full p1 p2 p1c" x="42%" y="50" fill="#f4656d" opacity="1">Cooperate</text>
+		<text class="full p1 p2 p1d" x="73%" y="50" fill="#f4656d" opacity="1">Defect</text>
+		<text class="full p1 p2 p2c" x="10%" y="150" fill="#008eb3" opacity="1">Cooperate</text>
+		<text class="full p1 p1c p1n" x="45%" y="150" fill="#008eb3" opacity="1">3</text>
+		<text class="full p2 p2n p2c" x="55%" y="150" fill="#f4656d" opacity="1">3</text>
+		<text class="full p1 p1d p1n" x="75%" y="150" fill="#008eb3" opacity="1">0</text>
+		<text class="full p2 p2n p2c" x="85%" y="150" fill="#f4656d" opacity="1">4</text>
+		<text class="fulls p2c p2cs" x="90%" y="150" fill="#f4656d" opacity="0">*</text>
+		<text class="full p1 p2 p2d" x="10%" y="230" fill="#008eb3" opacity="1">Defect</text>
+		<text class="fulls p1cs p1c" x="40%" y="230" fill="#008eb3" opacity="0">*</text>
+		<text class="full p1 p1c p1n" x="45%" y="230" fill="#008eb3" opacity="1">4</text>
+		<text  class="full p2 p2n p2d" x="55%" y="230" fill="#f4656d" opacity="1">0</text>
+		<text class="fulls p1d p1ds p1n" x="70%" y="230" fill="#008eb3" opacity="0">*</text>  
+		<text class="full p1 p1d p1n" x="75%" y="230" fill="#008eb3" opacity="1">1</text>
+		<text class="full p2 p2n p2d"  x="85%" y="230" fill="#f4656d" opacity="1">1</text>
+		<text class="fulls p2d p2ds"  x="90%" y="230" fill="#f4656d" opacity="0">*</text>
+	    </svg>
+	</div>
+
+	<script>
+	 function onoff(element, value) {
+	     let o = parseFloat(element.getAttributeNS(null, 'opacity'));
+	     element.setAttributeNS(null, 'opacity', value);
+	 }
+	 function narrate(str, chan) {
+	     document.querySelector(chan).innerHTML = str
+	 };
+	 function select(classtr) {
+	     return document.querySelector(classtr);
+	 }
+	 function selectAll(classtr) {
+	     return document.querySelectorAll(classtr);
+	 }
+
+	 function step(classtr, value, message, chan) {
+	     s = select(classtr);
+	     onoff(s, value);
+	     narrate(message, chan);
+	 }
+	 function steps(classtr, value, message, chan) {
+	     s = selectAll(classtr);
+	     s.forEach(function(element) {onoff(element, value)});
+	     narrate(message, chan);
+	 }
+	 
+
+	 function step0() {
+	     steps("*.coop", "0", "", "span.ncoop");
+	 }
+	 function step1() {
+	     step("circle.initstate", "1", "The circle with thick border is the initial state. This machine has only one circle hence only one state which is also the initial state.", "span.ncoop");
+	 }
+	 function step2() {
+	     step("text.initact", "1", "The letter C means that in this state the machine would play Cooperate.", "span.ncoop")
+	 }
+	 function step3() {
+	     steps("*.arrow", "1", "The arrow points to the next state that the machine would switch to from this current state. In this case, the arrow points to the same circle hence the machine stays in this state in the next move.", "span.ncoop")
+	 }
+	 function step4() {
+	     step("text.ctit", "1", "", "span.ncoop");
+	     step("text.other", "1", "The letters on the arrow are the action of the other player. In this case, both the actions C and D of the other player triggers the same reaction from this machine: it stays in the same state of playing Cooperate. This one is therefore called the cooperator.", "span.ncoop")
+	 }
+
+	 function settored(element, where) {
+	     element.setAttributeNS(null, where, "#f4656d");
+	 }
+	 
+	 function step5() {
+	     settored(select("circle.arrow"), 'stroke');
+	     settored(select("circle.initstate"), 'stroke');
+	     select("polygon.arrow").style = "fill:#f4656d";
+	     settored(select("text.initact"), 'fill');
+	     settored(select("text.other"), 'fill');
+	     select("text.initact").innerHTML="D";
+	     step("text.dtit", "1", "", "span.ncoop");
+	     narrate("Here is another machine. The only difference is that this one plays Defect forever.", "span.ncoop");
+	 }
+	 function step6() {
+	     steps("text.result", "1", "If we match these two together, one would play C forever, the other would play D forever, regardless of whatever their opponent does", "span.ncoop");
+	 }
+	 
+	</script>
+	
+	<strong> Click 0 to reset. Click the numeric buttons to go through this section. </strong> <br>
+	<span> <button type="button" onclick="step0()">0</button><button type="button" onclick="step1()">1</button><button type="button" onclick="step2()">2</button><button type="button" onclick="step3()">3</button><button type="button" onclick="step4()">4</button><button type="button" onclick="step5()">5</button><button type="button" onclick="step6()">6</button></span>
+	<p> >	<span class="ncoop"> We have here the first machine </span></p>
+	
+	<svg height="450">
+	    <circle cx="150" cy="100" r="40" stroke="#008eb3" stroke-width="3" fill="white"/>
+	    <circle cx="150" cy="150" r="40" stroke="#008eb3" stroke-width="5" fill="ghostwhite"/>
+	    <text x="150" y="150" fill="#008eb3" >C</text>
+
+	    <polygon points="180,110 195,120 177,127" style="fill:#008eb3" />
+	    <text x="150" y="50" fill="#008eb3" >C, D</text>
+	    <text class="coop ctit" x="80" y="250" fill="#008eb3" opacity="0"> The Cooperator </text>
+
+
+	    <circle class="coop arrow" cx="350" cy="100" r="40" stroke="#008eb3" stroke-width="3" fill="white" opacity="0" />
+	    <circle class="coop initstate" cx="350" cy="150" r="40" stroke="#008eb3" stroke-width="5" fill="ghostwhite" opacity="0" />
+	    <text class="coop initact" x="350" y="150" fill="#008eb3" opacity="0">C</text>
+
+	    <polygon class="coop arrow" points="380,110 395,120 377,127" style="fill:#008eb3" opacity="0" />
+	    <text class="coop other" x="350" y="50" fill="#008eb3" opacity="0">C, D</text>
+	    <text class="coop dtit" x="280" y="250" fill="#f4656b" opacity="0"> The Defector </text>
+
+	    <text class="coop result" x="150" y="300" fill="#008eb3" opacity="0"> P1:  C C C C C C C ... </text>
+	    <text class="coop result" x="150" y="330" fill="#f4656b" opacity="0"> P2:  D D D D D D D ...</text>
+	    
+	</svg>
+
+	<script>
+	 function s0() {
+	     steps("*.full", "1", "", "span.message");
+	 }
+	 function s1() {
+	     steps("*.full", "0", "", "span.message");
+	     step("circle.init", 1, "Here is the initial state of the machine.", "span.message");
+	 }
+	 function s2() {
+	     step("text.initc", "1", "In this initial state, the machine plays C. Which means that it starts out to be nice.", "span.message");
+	 }
+	 function s3() {
+	     step("*.arrowc", 1, "If the other player plays C, it continues to stay in the same state of playing C.", "span.message");
+	 }
+	</script>
+	<br>
+	<strong> Click 0 to reset. Click the numeric buttons to go through this section. </strong> <br>
+	<span> <button type="button" onclick="s0()">0</button><button type="button" onclick="s1()">1</button><button type="button" onclick="s2()">2</button><button type="button" onclick="s3()">3</button><button type="button" onclick="s4()">4</button><button type="button" onclick="s5()">5</button><button type="button" onclick="s6()">6</button></span>
+	  <p> Let's get acquainted to two other classic machines. You have to excuse me for the drawing. </p>
+	  <p> > <span class="message"> </span></p>
+	  <svg>
+	      <circle class="full arrowc" cx="150" cy="100" r="40" stroke="#008eb3" stroke-width="3" fill="white" opacity="1" />
+	      <circle class="full init" cx="150" cy="150" r="40" stroke="#008eb3" stroke-width="5" fill="ghostwhite" opacity="1" />
+	      <text class="full initc" x="150" y="150" fill="#008eb3" opacity="1" >C</text>
+	      <polygon class="full arrowc" points="180,110 195,120 177,127" style="fill:#f4656b" opacity="1" />
+	      <text class="full" x="200" y="270" fill="#008eb3" opacity="1"> Tit For Tat </text>
+	      <text class="full" x="150" y="50" fill="#008eb3" opacity="1" >C</text>
+	      <text class="full" x="250" y="70" fill="#008eb3" opacity="1" >C</text>
+	      
+	      <path class="full" d="M 180 120 q 80 -70 160 20" stroke="#f4656b"
+		    stroke-width="3" fill="none" opacity="1" />
+	      <path class="full" d="M 180 180 q 80 70 160 0" stroke="#008eb3"
+		    stroke-width="3" fill="none" opacity="1" />
+	      <text class="full" x="250" y="200" fill="#f4656b" opacity="1" >D</text>
+
+	      <circle class="full" cx="350" cy="100" r="40" stroke="#f4656b" stroke-width="3" fill="white" opacity="1" />
+	      <polygon class="full" points="380,110 395,120 377,127" style="fill:#f4656b" opacity="1" />
+	      <text class="full" x="350" y="50" fill="#f4656b" opacity="1">D</text>
+	      
+	      <circle class="full" cx="350" cy="150" r="40" stroke="#f4656b" stroke-width="3" fill="ghostwhite" opacity="1" />
+	      <text class="full" x="350" y="150" fill="#f4656b" opacity="1">D</text>
+
+	      <polygon class="full" points="310,190 335,185 320,205" style="fill:#008eb3" opacity="1" />
+
+
+	      
+	  </svg>
+	<p>
+	<strong> Exercise </strong> Can you do it for the following game: the Nash Demand Game in which there is 10 euro to be divided between two players. Each player can claim 2, 5 or 8 out of 10 which is equivalent to a Low, Medium or High portion of the pie, if the prize is ever interpreted as a pie. If the two claims sum up to be less than or equal 10, each gets what they wants, otherwise both get zero.
+	</p>
+	<table>
+	    <tr>
+		<th>P1 \ P2 </th>
+		<th>Low</th>
+		<th>Medium</th>
+		<th> High  </th>
+	    </tr>
+	    <tr>
+		<td>Low</td>
+		<td>2 2</td>
+		<td>2 5</td>
+		<td class="ne"> 2 8 </td>
+	    </tr>
+	    <tr>
+		<td>Medium</td>
+		<td>5 2</td>
+		<td class="ne">5 5</td>
+		<td> 0 0 </td>
+	    </tr>
+	    <tr>
+		<td> High </td>
+		<td class="ne"> 8 2 </td>
+		<td> 0 0 </td>
+		<td> 0 0 </td>
+	    </tr>
+	</table>
+	<p> > <span class="ans">  </span></p>
+	<script>
+	 
+	 function colorne() {
+
+	     nes = document.querySelectorAll("table td.ne");
+	     nes.forEach(function (element) { element.style = "color:#f4656d"  });
+	     document.querySelector("span.ans").innerHTML = "In each round, there are 3 possible actions. Hence, for a repeated game of n rounds, the number of strategies is 3<sup>n</sup>."
+
+	 }
+	</script>
+
+	<button type="button" onclick="colorne()">Answer</button>
+	<footer>
+	  <a href ="gitlab.com/ayaderaghul/thesis"> Gitlab Project </a> | Made with <span style="color:#f4656d">&#9829;</span> | <a href="github.com/ayaderaghul" style="color:#bb8f5b">Aya de Raghũl</a> | <img src="mint.jpg" width="2%">
+	</footer>
+
+    </div>
+    <div class="col">
+    <nav>
+	<ul>
+	  <li> <a href="intro.html"> Introduction </a> </li>
+	  <li> <a href="game.html"> The Game </a> </li>
+	  <li> <a href="repeated.html"> The Repeated Game</a> </li>
+	  <li> <a href="representation.html"> Strategy Representation </a></li>
+	  <li> <a href="cycle.html"> Simulation Cycle </a></li>
+	  <li> <a href="fitness.html"> Fitness Calculation </a></li>
+	  <li> <a href="run.html"> Run </a></li>
+	  <img src="damascus.jpg" width="90%">
+	  <span style="color:#bb8f5b">courtesy: c.hi</span>
+	</ul>
+    </nav>
+	  </div>
+
+
+</body>
+</html>

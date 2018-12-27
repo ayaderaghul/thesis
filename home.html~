@@ -1,0 +1,132 @@
+<h1>The Game</h1>
+
+    <strong> Press 0 to reset. Press the numeric keys (1,2,..8) to go through the section.  </strong>
+
+<p> Hello, first of all, let's see the most popular game: the Prisoner's Dilemma. </p>
+
+<div>  <p class="cap" style="display: inline">
+Here is the payoff matrix of the game.
+</p></div>
+
+<svg width="80%" height="400">
+  
+  <rect x="5%" y="20" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8">
+  </rect>
+  <rect x="35%" y="20" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8"/>
+  <rect x="65%" y="20" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8"/>
+    
+  <line x1="5%" y1="20" x2="35%" y2="100" style="stroke:#a7e5e0;stroke-width:1" />
+  
+  <rect x="5%" y="100" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8"/>
+  <rect x="35%" y="100" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8"/>
+  <rect x="65%" y="100" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8"/>
+  
+    <rect x="5%" y="180" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8"/>
+  <rect x="35%" y="180" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8"/>
+  <rect x="65%" y="180" width="30%" height="80"
+  style="fill:ghostwhite;stroke-width:1;stroke:#a7e5e0;opacity: 0.8"/>
+
+
+  <text x="25%" y="50" fill="#f4656d" opacity="1">P2</text>
+  <text x="10%" y="70" fill="#008eb3" opacity="1">P1</text>
+  <text class="full p1 p2 p1c" x="40%" y="50" fill="#f4656d" opacity="1">Cooperate</text>
+  <text class="full p1 p2 p1d" x="70%" y="50" fill="#f4656d" opacity="1">Defect</text>
+<text class="full p1 p2 p2c" x="10%" y="150" fill="#008eb3" opacity="1">Cooperate</text>
+<text class="full p1 p1c p1n" x="50%" y="150" fill="#008eb3" opacity="1">3</text>
+<text class="full p2 p2n p2c" x="60%" y="150" fill="#f4656d" opacity="1">3</text>
+  <text class="full p1 p1d p1n" x="70%" y="150" fill="#008eb3" opacity="1">0</text>
+    <text class="full p2 p2n p2c" x="80%" y="150" fill="#f4656d" opacity="1">4</text>
+      <text class="fulls p2c p2cs" x="82%" y="150" fill="#f4656d" opacity="0">*</text>
+
+  <text class="full p1 p2 p2d" x="10%" y="250" fill="#008eb3" opacity="1">Defect</text>
+  <text class="fulls p1cs p1c" x="45%" y="250" fill="#008eb3" opacity="0">*</text>
+<text class="full p1 p1c p1n" x="50%" y="250" fill="#008eb3" opacity="1">4</text>
+    <text  class="full p2 p2n p2d" x="60%" y="250" fill="#f4656d" opacity="1">0</text>
+    <text class="fulls p1d p1ds p1n" x="67%" y="250" fill="#008eb3" opacity="0">*</text>  
+  <text class="full p1 p1d p1n" x="70%" y="250" fill="#008eb3" opacity="1">1</text>
+  <text class="full p2 p2n p2d"  x="80%" y="250" fill="#f4656d" opacity="1">1</text>
+  <text class="fulls p2d p2ds"  x="82%" y="250" fill="#f4656d" opacity="0">*</text>
+  
+  
+</svg>
+
+
+
+<script>
+
+function onoff(element, value) {
+    let o = parseFloat(element.getAttributeNS(null, 'opacity'));
+    element.setAttributeNS(null, 'opacity', value);
+}
+function narrate(str) {
+    document.querySelector("p.cap").innerHTML = str
+}
+function selectall(classtr) {
+    let s = "text." + classtr; 
+    return document.querySelectorAll(s);
+}
+function select(classtr) {
+    let s = "text." + classtr;
+    return document.querySelector(s);
+}
+function onoffall(classtr, value, str) {
+    let all = selectall(classtr);
+    all.forEach(function (element) { onoff(element, value) });
+    narrate(str);
+}
+
+document.onkeydown = function(e) {
+    switch (e.keyCode) {
+    case 48:
+	onoffall("full", "1", "");
+	break;
+    case 49:
+	onoffall("p2n", "0", "This is what it looks like from the player 1's point of view.");
+	break;	
+    case 50:
+	onoffall("p1d", "0", "P1 proceeds to think about the course of action of P2: what if P2 cooperates?");
+	break;
+    case 51:
+	let s3 = select("p1cs");
+	onoff(s3, "1");
+	narrate("If P2 cooperates, I have 2 choices: to cooperate or to defect. If I cooperate, I get 3. If I defect, I get 4. Because 4 > 3, I choose to defect. A star is put next to number 4. <br> <i>Weak assumption of rationality: A bigger payoff is prefered.</i>")
+	break;
+    case 52:
+	onoffall("p1c","0","");
+	onoffall("p1d", "1", "If P2 defects, I have 2 choices: to cooperate to get 0 or to defect to get 1. Because 1 > 0, I choose to defect. A star is put next to number 1. <br> <i>Weak assumption of rationality: A bigger payoff is preferred</i>");
+	break;
+    case 53:
+	onoffall("p1n","0","");
+	onoffall("p2", "1","Now let's stand in Player 2's shoes.");
+	break;
+    case 54:
+	let s6 = select("p2cs");
+	onoff(s6, "1");
+	onoffall("p2d","0","P2 thinks that: if P1 cooperates, I can get 3 or 4 depending whether I cooperate or defect. Because 4 > 3, I prefer to defect. <br> <i> Weak assumption of rationality: A bigger payoff is preferred</i>");
+	break;
+    case 55:
+	onoffall("p2c","0","");
+	let s7 = select("p2ds");
+	onoff(s7, "1");
+	onoffall("p2d","1","P2 thinks that: if P1 defects, I can get 0 or 1 depending whether I cooperate or defect. Because 1 > 0, I prefer to defect. <br> <i> Weak assumption of rationality: A bigger payoff is preferred</i>");
+	break;
+    case 56:
+	onoffall("full", "1", "");
+	onoffall("fulls","1","You see that the cell with two stars is the fixedd point between two players' reasoning. It is a Nash equilibrium.");
+	break;
+	
+	
+    }
+}
+
+</script>
+
+ 
