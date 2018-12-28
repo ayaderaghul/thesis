@@ -8,8 +8,6 @@
      body {
 	 display: flex;
 	 flex-direction: row;
-
-
 	 font-family: helvetica, arial, sans;
 	 padding: 2%;
      }
@@ -42,18 +40,15 @@
 	 width: 35%;
      }
      nav {
-
 	 border: 1px dashed #bb8f5b;
 	 margin: 5%;
 	 padding: 1% 1% 1% 0;
-	 
      }
      footer {
 	 margin: 3% 0
      }
      ul {
 	 list-style: none;
-	 
      }
      li {
 	 margin: 3%
@@ -68,7 +63,6 @@
      button:hover {
 	 background-color: #f4656d;
      }
-
      rect {
 	 fill:ghostwhite;
 	 stroke-width:1;
@@ -110,7 +104,6 @@
 	 color:#f4656d;
 	 font-size:2vw;	 
      }
-
      .game2 {
 	 font-size: 2vw;
 	 color:#008eb3;
@@ -119,7 +112,6 @@
 	 color: #008eb3;
      }
     </style>
-
 </head>
 <body>
 
@@ -220,13 +212,24 @@ In this project we would use finite state machine to represent a strategy. The b
 	 function settored(element, where) {
 	     element.setAttributeNS(null, where, "#f4656d");
 	 }
-	 
+	 function tored(element) {
+	     if (element.tagName == "circle") {
+		 settored(element, 'stroke');
+	     }
+	     if (element.tagName == "text") {
+		 settored(element, 'fill');
+	     }
+	     if (element.tagName == "polygon") {
+		 element.style = "fill:#f4656d";
+	     }
+	 }
 	 function step5() {
-	     settored(select("circle.arrow"), 'stroke');
-	     settored(select("circle.initstate"), 'stroke');
-	     select("polygon.arrow").style = "fill:#f4656d";
-	     settored(select("text.initact"), 'fill');
-	     settored(select("text.other"), 'fill');
+	     tored(select("circle.arrow"));
+	     tored(select("circle.initstate"));
+	     tored(select("polygon.arrow"));
+	     tored(select("text.initact"));
+	     tored(select("text.other"));
+//	     settored(select("circle.arrow"), 'stroke');
 	     select("text.initact").innerHTML="D";
 	     step("text.dtit", "1", "", "span.ncoop");
 	     narrate("Here is another machine. The only difference is that this one plays Defect forever.", "span.ncoop");
@@ -259,8 +262,8 @@ In this project we would use finite state machine to represent a strategy. The b
 	    <text class="coop other" x="350" y="50" fill="#008eb3" opacity="0">C, D</text>
 	    <text class="coop dtit" x="280" y="250" fill="#f4656b" opacity="0"> The Defector </text>
 
-	    <text class="coop result" x="150" y="300" fill="#008eb3" opacity="0"> P1:  C C C C C C C ... </text>
-	    <text class="coop result" x="150" y="330" fill="#f4656b" opacity="0"> P2:  D D D D D D D ...</text>
+	    <text class="coop result" x="150" y="300" fill="#008eb3" opacity="0"> Cooperator:  C C C C C C C ... </text>
+	    <text class="coop result" x="150" y="330" fill="#f4656b" opacity="0"> Defector:  D D D D D D D ...</text>
 	    
 	</svg>
 
@@ -276,13 +279,36 @@ In this project we would use finite state machine to represent a strategy. The b
 	     step("text.initc", "1", "In this initial state, the machine plays C. Which means that it starts out to be nice.", "span.message");
 	 }
 	 function s3() {
-	     step("*.arrowc", 1, "If the other player plays C, it continues to stay in the same state of playing C.", "span.message");
+	     steps("*.arrowc", 1, "If the other player plays C, it continues to stay in the same state of playing C.", "span.message");
+	 }
+	 function s4() {
+	 steps("*.arrowd", 1, "If the other player plays D, it switches to the state of playing D.", "span.message");
+	 }
+	 function s5() {
+	 steps("*.arrowd2", 1, "From the state of playing D, if the other player continues to defect, it continues to defect also.", "span.message")
+	 }
+	 function s6() {
+	 steps("*.arrowc2", 1, "However, if the other player plays C, it also reverts to the state of playing C. It forgives, <i>sort of</i>.", "span.message")
+	 }
+	 function s7() {
+	 steps("*.coer", 1, "If you match Tit for Tat with the Cooperator, they would play Cooperate forever. Do you know why?", "span.message");
+	 }
+	 function changehtml(classtr, str) {
+	     select(classtr).innerHTML = str;
+	 }
+	 function s8() {
+	     es = selectAll("*.defector");
+	     es.forEach(function (element) {tored(element)});
+	     changehtml("text.defact", "D");
+	     changehtml("text.deftit", "The Defector");
+	     changehtml("text.defres", "Defector: D D D D D D D ...");
+	     narrate("If you match Tit for Tat with the Defector, TFT learns to play Defect afterward. Why?", "span.message");
 	 }
 	</script>
 	<br>
 	<strong> Click 0 to reset. Click the numeric buttons to go through this section. </strong> <br>
-	<span> <button type="button" onclick="s0()">0</button><button type="button" onclick="s1()">1</button><button type="button" onclick="s2()">2</button><button type="button" onclick="s3()">3</button><button type="button" onclick="s4()">4</button><button type="button" onclick="s5()">5</button><button type="button" onclick="s6()">6</button></span>
-	  <p> Let's get acquainted to two other classic machines. You have to excuse me for the drawing. </p>
+	<span> <button type="button" onclick="s0()">0</button><button type="button" onclick="s1()">1</button><button type="button" onclick="s2()">2</button><button type="button" onclick="s3()">3</button><button type="button" onclick="s4()">4</button><button type="button" onclick="s5()">5</button><button type="button" onclick="s6()">6</button><button type="button" onclick="s7()">7</button><button type="button" onclick="s8()">8</button></span>
+	  <p> Let's get acquainted to two other classic machines. </p>
 	  <p> > <span class="message"> </span></p>
 	  <svg>
 	      <circle class="full arrowc" cx="150" cy="100" r="40" stroke="#008eb3" stroke-width="3" fill="white" opacity="1" />
@@ -290,31 +316,105 @@ In this project we would use finite state machine to represent a strategy. The b
 	      <text class="full initc" x="150" y="150" fill="#008eb3" opacity="1" >C</text>
 	      <polygon class="full arrowc" points="180,110 195,120 177,127" style="fill:#f4656b" opacity="1" />
 	      <text class="full" x="200" y="270" fill="#008eb3" opacity="1"> Tit For Tat </text>
-	      <text class="full" x="150" y="50" fill="#008eb3" opacity="1" >C</text>
-	      <text class="full" x="250" y="70" fill="#008eb3" opacity="1" >C</text>
+	      <text class="full arrowc" x="150" y="50" fill="#008eb3" opacity="1" >C</text>
+	      <text class="full arrowc2" x="250" y="70" fill="#008eb3" opacity="1" >C</text>
 	      
-	      <path class="full" d="M 180 120 q 80 -70 160 20" stroke="#f4656b"
+	      <path class="full arrowc2" d="M 180 120 q 80 -70 160 20" stroke="#f4656b"
 		    stroke-width="3" fill="none" opacity="1" />
-	      <path class="full" d="M 180 180 q 80 70 160 0" stroke="#008eb3"
+	      <path class="full arrowd" d="M 180 180 q 80 70 160 0" stroke="#008eb3"
 		    stroke-width="3" fill="none" opacity="1" />
-	      <text class="full" x="250" y="200" fill="#f4656b" opacity="1" >D</text>
+	      <text class="full arrowd" x="250" y="200" fill="#f4656b" opacity="1" >D</text>
 
-	      <circle class="full" cx="350" cy="100" r="40" stroke="#f4656b" stroke-width="3" fill="white" opacity="1" />
-	      <polygon class="full" points="380,110 395,120 377,127" style="fill:#f4656b" opacity="1" />
-	      <text class="full" x="350" y="50" fill="#f4656b" opacity="1">D</text>
+	      <circle class="full arrowd2" cx="350" cy="100" r="40" stroke="#f4656b" stroke-width="3" fill="white" opacity="1" />
+	      <polygon class="full arrowd2" points="380,110 395,120 377,127" style="fill:#f4656b" opacity="1" />
+	      <text class="full arrowd2" x="350" y="50" fill="#f4656b" opacity="1">D</text>
 	      
-	      <circle class="full" cx="350" cy="150" r="40" stroke="#f4656b" stroke-width="3" fill="ghostwhite" opacity="1" />
-	      <text class="full" x="350" y="150" fill="#f4656b" opacity="1">D</text>
+	      <circle class="full arrowd" cx="350" cy="150" r="40" stroke="#f4656b" stroke-width="3" fill="ghostwhite" opacity="1" />
+	      <text class="full arrowd" x="350" y="150" fill="#f4656b" opacity="1">D</text>
 
-	      <polygon class="full" points="310,190 335,185 320,205" style="fill:#008eb3" opacity="1" />
+	      <polygon class="full arrowd" points="310,190 335,185 320,205" style="fill:#008eb3" opacity="1" />
 
 
+
+	      	    <circle class="coer defector" cx="550" cy="100" r="40" stroke="#008eb3" stroke-width="3" fill="white" opacity="0" />
+	    <circle class="coer defector" cx="550" cy="150" r="40" stroke="#008eb3" stroke-width="5" fill="ghostwhite" opacity="0" />
+	    <text class="coer defector defact" x="550" y="150" fill="#008eb3" opacity="0">C</text>
+
+	    <polygon class="coer defector" points="580,110 595,120 577,127" style="fill:#008eb3" opacity="0" />
+	    <text class="coer defector" x="550" y="50" fill="#008eb3" opacity="0">C, D</text>
+	    <text class="coer defector deftit" x="480" y="250" fill="#008eb3" opacity="0"> The Cooperator </text>
+
+	    <text class="coer" x="150" y="300" fill="#008eb3" opacity="0"> Tit For Tat:  C C C C C C C ... </text>
+	    <text class="coer defector defres" x="150" y="330" fill="#008eb3" opacity="0"> Cooperator:  C C C C C C C ...</text>
+	    
+
+	      
 	      
 	  </svg>
-	<p>
-	<strong> Exercise </strong> Can you do it for the following game: the Nash Demand Game in which there is 10 euro to be divided between two players. Each player can claim 2, 5 or 8 out of 10 which is equivalent to a Low, Medium or High portion of the pie, if the prize is ever interpreted as a pie. If the two claims sum up to be less than or equal 10, each gets what they wants, otherwise both get zero.
+
+	  <p>
+	      <strong>
+		  Exercise
+	      </strong>
+	      Can you draw the Grim Trigger based on the following description: It has two states. It starts out to play Cooperate in the initial state. If the other player plays C, it stays in the state of Cooperating. If the other player plays D, it switches to the second state of Defecting. From that state, there is no way back which means that no matter what the other player does, it stays in that same state.
+	      
+	  </p>
+	  <script>
+	   function drawgt() {
+	       es = selectAll("*.gt");
+	       es.forEach(function (e) { onoff(e, 1) });
+	       
+	   }
+	  </script>
+	  <button type="button" onclick="drawgt()">Answer</button> <br>
+	  <svg>
+	      <circle class="gt" cx="150" cy="100" r="40" stroke="#008eb3" stroke-width="3" fill="white" opacity="0" />
+	      <circle class="gt" cx="150" cy="150" r="40" stroke="#008eb3" stroke-width="5" fill="ghostwhite" opacity="0" />
+	      <text class="gt" x="150" y="150" fill="#008eb3" opacity="0" >C</text>
+	      <polygon class="gt" points="180,110 195,120 177,127" style="fill:#008eb3" opacity="0" />
+	      <text class="gt" x="200" y="270" fill="#008eb3" opacity="0"> Grim Trigger </text>
+	      <text class="gt" x="150" y="50" fill="#008eb3" opacity="0" >C</text>
+	      <text class="gt" x="250" y="140" fill="#f4656b" opacity="0" >D</text>
+	      <circle class="gt" cx="350" cy="100" r="40" stroke="#f4656b" stroke-width="3" fill="white" opacity="0" />
+	      <polygon class="gt" points="380,110 395,120 377,127" style="fill:#f4656b" opacity="0" />
+	      <line class="gt" x1="190" y1="150" x2="350" y2="150" style="stroke:#008eb3;stroke-width:3" opacity="0" />
+	      <text class="gt" x="350" y="50" fill="#f4656b" opacity="0">C, D</text>
+	      
+	      <circle class="gt" cx="350" cy="150" r="40" stroke="#f4656b" stroke-width="3" fill="ghostwhite" opacity="0" />
+	      <text class="gt" x="350" y="150" fill="#f4656b" opacity="0">D</text>
+
+	      <polygon class="gt" points="300,140 315,150 300,160" style="fill:#008eb3" opacity="0" />
+	      
+	  </svg><br>
+
+	  <p>
+	      <strong> Exercise </strong> Can you match Grim Trigger with other classic machines such as the Cooperator, the Defector and Tit for Tat?
+	  </p>
+	  <script>
+	   function match() {
+	       select("p.answer").setAttributeNS(null, 'style', 'font-size:2vw;display:block');
+	   }
+	  </script>
+	  <p>
+	      <button type="button" onclick="match()">Answer</button>
+	      
+	  </p>
+
+	  <p class="answer" style="font-size:2vw;display:none"> <code>
+Grim Trigger: C C C ... <br>
+	      <span style="color:#008eb3"> The Cooperator: C C C ... </span><br>
+
+Grim Trigger: C D D ... <br>
+	      <span style="color: #f4656b"> The Defector: D D D ... </span><br>
+
+Grim Trigger: C C C ... <br>
+Tit for Tat: C C C ... <br>
+	  </code></p> 
+	  
+	  <p>
+	<strong> Exercise </strong> I give you the Nash Demand Game in which there is 10 euro to be divided between two players. Each player can claim 2, 5 or 8 out of 10 which is equivalent to a Low, Medium or High portion of the pie, if the prize is ever interpreted as a pie. If the two claims sum up to be less than or equal 10, each gets what they wants, otherwise both get zero. 
 	</p>
-	<table>
+	<table style="font-size:2vw">
 	    <tr>
 		<th>P1 \ P2 </th>
 		<th>Low</th>
@@ -340,19 +440,15 @@ In this project we would use finite state machine to represent a strategy. The b
 		<td> 0 0 </td>
 	    </tr>
 	</table>
+
+	<p> Can you use finite state machines to represent strategies in the repeated NDG? Can you draw the classic machines of this game? Can you match them together and write the payoff sequence resulting from the match?</p>
+	<button type="button" onclick="colorne()">Answer</button>
 	<p> > <span class="ans">  </span></p>
 	<script>
 	 
-	 function colorne() {
-
-	     nes = document.querySelectorAll("table td.ne");
-	     nes.forEach(function (element) { element.style = "color:#f4656d"  });
-	     document.querySelector("span.ans").innerHTML = "In each round, there are 3 possible actions. Hence, for a repeated game of n rounds, the number of strategies is 3<sup>n</sup>."
-
-	 }
 	</script>
 
-	<button type="button" onclick="colorne()">Answer</button>
+
 	<footer>
 	  <a href ="gitlab.com/ayaderaghul/thesis"> Gitlab Project </a> | Made with <span style="color:#f4656d">&#9829;</span> | <a href="github.com/ayaderaghul" style="color:#bb8f5b">Aya de Raghũl</a> | <img src="mint.jpg" width="2%">
 	</footer>
