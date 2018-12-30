@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+    <head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="main.js"></script>
+    </head>
+    <body>
+	<div class="content">    
+	    <header>III. Strategy Representation 2</header>
+	    
+	    <h1>Exercise section 2 </h1>
+	    <p>
+		<strong> Exercise </strong> I give you the Nash Demand Game in which there is 10 euro to be divided between two players. Each player can claim 2, 5 or 8 out of 10 which is equivalent to a Low, Medium or High portion of the pie, if the prize is ever interpreted as a pie. If the two claims sum up to be less than or equal 10, each gets what they wants, otherwise both get zero. 
+	    </p>
+	    <table style="font-size:2vw">
+		<tr>
+		    <th>P1 \ P2 </th>
+		    <th>Low</th>
+		    <th>Medium</th>
+		    <th> High  </th>
+		</tr>
+		<tr>
+		    <td>Low</td>
+		    <td>2 2</td>
+		    <td>2 5</td>
+		    <td class="ne"> 2 8 </td>
+		</tr>
+		<tr>
+		    <td>Medium</td>
+		    <td>5 2</td>
+		    <td class="ne">5 5</td>
+		    <td> 0 0 </td>
+		</tr>
+		<tr>
+		    <td> High </td>
+		    <td class="ne"> 8 2 </td>
+		    <td> 0 0 </td>
+		    <td> 0 0 </td>
+		</tr>
+	    </table>
+	    
+	    <p> At this point, your neurons probably have formed some sort of patterns and it is very natural that you can think about the questions we ask. Almost like you can predict me. It should be. Something along the line of: Can you think about how to use finite state machines to represent strategies in the repeated NDG? In other words, can you draw the classic machines of this game? Can you match them together and write the payoff sequence resulting from the match? We would address these questions in turn, as follows.</p>
+
+	    <h1> Interactive section 2 </h1>
+	    
+	    <p><strong> Classic finite state machines </strong> Before diving into action, let's think about it a bit. Just like in the Prisoner's Dilemma, the ones that are easy to guess are the ones with only one state doing only one thing. They are: the one that always claims Low regardless of the other player's action, the one that always claims Medium no matter what and the one that always claims High. Can you draw them?
+	    </p>
+
+	    <p>	  <button type="button" onclick="drawcl()">Answer</button> </p>
+	    
+	    <svg class="ex2" style="display:none">
+		<circle cx="150" cy="100" r="40" stroke="#bb8f5b" stroke-width="3" fill="white"/>
+		<circle cx="150" cy="150" r="40" stroke="#bb8f5b" stroke-width="5" fill="ghostwhite"/>
+		<text x="150" y="150" fill="#bb8f5b" >L</text>
+		
+		<polygon points="180,110 195,120 177,127" style="fill:#bb8f5b" />
+		<text x="150" y="50" fill="#bb8f5b" >L,M,H</text>
+		<text x="80" y="250" fill="#bb8f5b"> Always-Low </text>
+
+
+		<circle cx="350" cy="100" r="40" stroke="#008eb3" stroke-width="3" fill="white"/>
+		<circle cx="350" cy="150" r="40" stroke="#008eb3" stroke-width="5" fill="ghostwhite"/>
+		<text x="350" y="150" fill="#008eb3" >M</text>
+		
+		<polygon points="380,110 395,120 377,127" style="fill:#008eb3" />
+		<text x="350" y="50" fill="#008eb3" >L,M,H</text>
+		<text x="250" y="250" fill="#008eb3"> Always-Medium </text>
+
+
+
+		<circle cx="550" cy="100" r="40" stroke="#f4656d" stroke-width="3" fill="white"/>
+		<circle cx="550" cy="150" r="40" stroke="#f4656d" stroke-width="5" fill="ghostwhite"/>
+		<text x="550" y="150" fill="#f4656d" >H</text>
+		
+		<polygon points="580,110 595,120 577,127" style="fill:#f4656d" />
+		<text x="550" y="50" fill="#f4656d" >L,M,H</text>
+		<text x="490" y="250" fill="#f4656d"> Always-High </text>	
+
+	    </svg>
+
+	    <div>
+		<h1> Interactive section 3 </h1>
+		<p>Can you think about other finite state machines with more than one state? Can you think about multiple state machines that seem interesting? Here I would give you one such.</p>
+		<p><strong>Click 0 to reset. Click other numeric buttons to go through the section.</strong></p>
+
+		<p><span> <button type="button" onclick="III3step0()">0</button><button type="button" onclick="III3step1()">1</button><button type="button" onclick="III3step2()">2</button><button type="button" onclick="III3step3()">3</button><button type="button" onclick="III3step4()">4</button><button type="button" onclick="III3step5()">5</button><button type="button" onclick="III3step6()">6</button><button type="button" onclick="III3step7()">7</button></span></p>
+
+		<div class="caption"> > <p class="cap3"> </p></div>
+	    </div>
+	    
+	    <svg height="450">
+
+		<line class="reset inith" x1="150" y1="150" x2="300" y2="80" style="stroke:#008eb3;stroke-width:3" opacity="1" />
+		<polygon class="reset inith"  points="250,92 265,95 252,112" style="fill:#008eb3" opacity="1"/>
+		<text class="reset inith"  x="220" y="110" fill="#f4656b" opacity="1">H</text>
+		<line class="reset lact"  x1="190" y1="150" x2="300" y2="100" style="stroke:#bb8f5b;stroke-width:3" opacity="1"/>
+		<polygon class="reset lact"  points="200,135 205,150 192,152" style="fill:#bb8f5b" opacity="1"/>
+		<text class="reset lact"  x="220" y="150" fill="#008eb3" opacity="1">M</text>
+
+
+
+		<line class="reset initl"  x1="170" y1="160" x2="300" y2="260" style="stroke:#008eb3;stroke-width:3" opacity="1"/>
+		<text class="reset initl"  x="230" y="200" fill="#bb8f5b" opacity="1">L</text>		
+		<polygon class="reset initl"  points="252,212 263,230 250,230" style="fill:#008eb3" opacity="1" />
+		
+		<line class="reset hact"  x1="170" y1="185" x2="300" y2="285" style="stroke:#f4656b;stroke-width:3" opacity="1" />	
+		<polygon class="reset hact"  points="170,182 180,200 190,190" style="fill:#f4656b" opacity="1"/>
+		<text class="reset hact"  x="200" y="250" fill="#008eb3" opacity="1">M</text>
+
+
+
+		<line class="reset hact"  x1="290" y1="140" x2="290" y2="250" style="stroke:#f4656b;stroke-width:3" opacity="1"/>
+		<text class="reset hact"  x="270" y="180" fill="#f4656b" opacity="1">H</text>
+		<polygon class="reset hact"  points="290,140 300,150 280,150" style="fill:#f4656b" opacity="1"/>
+		
+		<line class="reset lact"  x1="310" y1="140" x2="310" y2="250" style="stroke:#bb8f5b;stroke-width:3" opacity="1"/>
+		<text class="reset lact"  x="310" y="185" fill="#bb8f5b" opacity="1">L</text>
+		<polygon class="reset lact"  points="310,210 320,200 300,200" style="fill:#bb8f5b" opacity="1"/>
+
+		
+		<circle class="reset initm"  cx="150" cy="100" r="40" stroke="#008eb3" stroke-width="3" fill="white" opacity="1"/>
+		<circle class="reset init"  cx="150" cy="150" r="40" stroke="#008eb3" stroke-width="5" fill="ghostwhite" opacity="1"/>
+		<text class="reset init"  x="150" y="150" fill="#008eb3" opacity="1">M</text>
+		
+		<polygon class="reset initm"  points="180,110 195,120 177,127" style="fill:#008eb3" opacity="1"/>
+		<text class="reset initm"  x="150" y="50" fill="#008eb3" opacity="1">M</text>
+
+
+		
+		<text class="reset name"  x="80" y="300" fill="#008eb3" opacity="1"> The Flexible </text>
+
+
+
+		<circle class="reset lact"  cx="300" cy="50" r="40" stroke="#bb8f5b" stroke-width="3" fill="white" opacity="1"/>
+		<circle class="reset l"  cx="300" cy="100" r="40" stroke="#bb8f5b" stroke-width="3" fill="ghostwhite" opacity="1"/>
+		<text class="reset l"  x="300" y="100" fill="#bb8f5b" opacity="1">L</text>
+		
+		<polygon class="reset lact"  points="330,60 345,70 327,77" style="fill:#bb8f5b" opacity="1"/>
+		<text class="reset lact"  x="350" y="30" fill="#f4656b" opacity="1">H</text>
+
+
+		<circle class="reset hact"  cx="352" cy="252" r="40" stroke="#f4656b" stroke-width="3" fill="white" opacity="1"/>
+		<circle class="reset h"  cx="300" cy="250" r="40" stroke="#f4656b" stroke-width="3" fill="ghostwhite" opacity="1"/>
+		<text class="reset h"  x="300" y="250" fill="#f4656b" opacity="1">H</text>
+		
+		<polygon class="reset hact"  points="330,210 345,220 327,227" style="fill:#f4656b" opacity="1"/>
+		<text class="reset hact"  x="400" y="250" fill="#bb8f5b" opacity="1">L</text>
+
+
+	    </svg>
+
+	<footer>
+	  <a href ="gitlab.com/ayaderaghul/thesis"> Gitlab Project </a> | Made with <span style="color:#f4656d">&#9829;</span> | <a href="github.com/ayaderaghul" style="color:#bb8f5b">Aya de Raghũl</a> | <img src="mint.jpg" width="2%">
+	</footer>
+
+    </div>
+
+    <nav>
+	<ul>
+	  <li> <a href="intro.html"> 0. Introduction </a> </li>
+	  <li> <a href="game.html"> I. The Game </a> </li>
+	  <li> <a href="repeated.html"> II. The Repeated Game</a> </li>
+	  <li> <a href="representation.html"> III. Strategy Representation </a></li>
+	  <li> <a href="representation2.html"> III. Strategy Representation 2 </a></li>
+
+	  <li> <a href="cycle.html"> IV. Simulation Cycle </a></li>
+	  <li> <a href="fitness.html"> V. Fitness Calculation </a></li>
+	  <li> <a href="run.html"> VI. Run </a></li>
+	  <div class="courtesy">
+	    <img src="astronaut.jpg">
+	    <p>courtesy: r.omas</p>
+</div>
+	</ul>
+    </nav>
+
+
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+     function onoff(element, value) {
+	 element.setAttributeNS(null, 'opacity', value);
+     }
+function on(element) {
+onoff(element, 1);
+}
+function off(element) {
+onoff(element, 0);
+}
+
+     function narrate(str, chan) {
+	 document.querySelector(chan).innerHTML = str
+     }
+     function selectall(classtr) {
+	 return document.querySelectorAll(classtr);
+     }
+     function select(classtr) {
+	 return document.querySelector(classtr);
+     }
+
+function onall(classtr) {
+let all  = selectall(classtr);
+all.forEach(function (element) { on(element) });
+}
+function offall(classtr) {
+let all  = selectall(classtr);
+all.forEach(function (element) { off(element) });
+}
+ 
+
+     function step0() {
+	 onall("*.reset0", "", ".cap0");
+offall("*.star0", "", ".cap0");
+     }
+     function step1() {
+	 onoffall("p2n", "0", "This is what it looks like from the player 1's point of view.");
+     }
+     function step2() {
+	 onoffall("p1d", "0", "P1 proceeds to think about the course of action of P2: what if P2 cooperates?");
+     }
+     function step3() {
+	 let s3 = select("p1cs");
+	 onoff(s3, "1");
+	 narrate("If P2 cooperates, I have 2 choices: to cooperate or to defect. If I cooperate, I get 3. If I defect, I get 4. Because 4 > 3, I choose to defect. A star is put next to number 4. <br> <i>Weak assumption of rationality: A bigger payoff is prefered.</i>")
+     }
+     function step4() {
+	 onoffall("p1c","0","");
+	 onoffall("p1d", "1", "If P2 defects, I have 2 choices: to cooperate to get 0 or to defect to get 1. Because 1 > 0, I choose to defect. A star is put next to number 1. <br> <i>Weak assumption of rationality: A bigger payoff is preferred</i>");
+
+     }
+     function step5() {
+	 onoffall("p1n","0","");
+	 onoffall("p2", "1","Now let's stand in Player 2's shoes.");
+
+     }
+     function step6() {
+	 let s6 = select("p2cs");
+	 onoff(s6, "1");
+	 onoffall("p2d","0","P2 thinks that: if P1 cooperates, I can get 3 or 4 depending whether I cooperate or defect. Because 4 > 3, I prefer to defect. <br> <i> Weak assumption of rationality: A bigger payoff is preferred</i>");
+
+     }
+     function step7() {
+	 onoffall("p2c","0","");
+	 let s7 = select("p2ds");
+	 onoff(s7, "1");
+	 onoffall("p2d","1","P2 thinks that: if P1 defects, I can get 0 or 1 depending whether I cooperate or defect. Because 1 > 0, I prefer to defect. <br> <i> Weak assumption of rationality: A bigger payoff is preferred</i>");
+
+     }
+     function step8() {
+	 onoffall("full", "1", "");
+	 onoffall("fulls","1","You see that the cell with two stars is the fixedd point between two players' reasoning. It is a Nash equilibrium.");
+
+     }
+
+
+     
+     document.onkeydown = function(e) {
+	 switch (e.keyCode) {
+	     case 48:
+		 step0(); break;
+	     case 49:
+		 step1(); break;	
+	     case 50:
+		 step2(); break;
+	     case 51:
+		 step3(); break;
+	     case 52:
+		 step4(); break;
+	     case 53:
+		 step5(); break;
+	     case 54:
+		 step6(); break;
+	     case 55:
+		 step7(); break;
+	     case 56:
+		 step8(); break;
+	 }
+     }
+
+function colorne() {
+
+	     nes = document.querySelectorAll("table td.ne");
+	     nes.forEach(function (element) { element.style = "color:#f4656d"  });
+
+	 }

@@ -1,249 +1,113 @@
 <!doctype html>
 <html>
-<head>
-    <style>
-     * {
-	 box-sizing: border-box;
-     }
-     body {
-	 display: flex;
-	 flex-direction: row;
-
-
-	 font-family: helvetica, arial, sans;
-	 padding: 2%;
-     }
-     a {
-	 color: #008eb3;
-     }
-     header {
-	 font-size: 3em;
-	 font-weight: bold;
-	 text-align: center;
-	 background-color: #008eb3;
-	 color: white;
-	 padding: 2%;
-	 margin: 2% 0 2% 0;
-     }
-     intro {
-	 margin: 2%;
-     }
-     content {
-	 display: flex;
-	 flex-direction: column;
-	 width: 50%;
-     }
-     svg {
-	 width: 80%;
-	 height: 330px;
-	 margin: 2%;
-     }
-     col {
-	 width: 35%;
-     }
-     nav {
-
-	 border: 1px dashed #bb8f5b;
-	 margin: 5%;
-	 padding: 1% 1% 1% 0;
-	 
-     }
-     footer {
-	 margin: 3% 0
-     }
-     ul {
-	 list-style: none;
-	 
-     }
-     li {
-	 margin: 3%
-     }
-     a {
-	 color: #008eb3;
-	 text-decoration: none;
-     }
-     a:hover {
-	 text-decoration: underline;
-     }
-     button:hover {
-	 background-color: #f4656d;
-     }
-
-     rect {
-	 fill:ghostwhite;
-	 stroke-width:1;
-	 stroke:#a7e5e0;
-	 opacity: 0.8;
-     }
-     line {
-	 stroke:#a7e5e0;stroke-width:1
-     }
-     text {
-	 font-size: 1.5em;
-	 font-weight: bold;
-     }
-     courtesy {
-	 font-color: #bb8f5b
-     }
-     button {
-	 background-color: #e4dbbe;
-	 padding: 1% 2%;
-	 margin: 2px;
-	 border: none;
-     }
-     table {
-	 width: 60%;
-	 margin: 5% 20%
-     }
-     table, th, td {	 
-	 text-align:center;
-	 border-collapse: collapse;
-	 border: 1px solid black;	 
-     }
-     .game {
-	 background-color: ghostwhite;
-	 padding: 2% 2%;
-	 display: inline-block;
-	 border-radius: 10px;
-     }
-     .game1 {
-	 color:#f4656d;
-	 font-size:2vw;	 
-     }
-
-     .game2 {
-	 font-size: 2vw;
-	 color:#008eb3;
-     }
-     .ans {
-	 color: #008eb3;
-     }
-    </style>
-
-</head>
-<body>
-
-    <div class="content">
+    <head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+      	<script type="text/javascript" src="main.js"></script>
 	
-	<header>The Repeated Game</header>
-	<div class="intro"> 	
-	    
-	    <p>
-	      As you see in the previous section, if the game is played for just one time between two players, the result is for both players to inevitably defect. Let's consider another variance of this game in which the game is played for more than one rounds between two players. Which means that it is played repeatedly.
-	    </p>
-	    
-	    <div>  <p class="cap" style="display: inline">
-		Here is the payoff matrix of the game.
-	    </p></div>
-	</div>
-	<div class="frame">
-	    <svg>
-		<rect x="5%" y="20" width="30%" height="80"/>
-		<rect x="35%" y="20" width="30%" height="80"/>
-		<rect x="65%" y="20" width="30%" height="80"/>
-		
-		<line x1="5%" y1="20" x2="35%" y2="100"/> 
-		
-		<rect x="5%" y="100" width="30%" height="80"/>
-		<rect x="35%" y="100" width="30%" height="80"/>
-		<rect x="65%" y="100" width="30%" height="80"/>
-		
-		<rect x="5%" y="180" width="30%" height="80"/>
-		<rect x="35%" y="180" width="30%" height="80"/>
-		<rect x="65%" y="180" width="30%" height="80"/>
+    </head>
+    <body>
+	<div class="content">  
+	    <header>II. The Repeated Game</header>
+		<h1> Plain section 0 </h1>
+		<p> As you see in the previous section, if the game is played for just one time between two players, the result is for both players to inevitably defect. Let's consider another variance of this game in which the game is played for more than one rounds between two players. Which means that it is played repeatedly.   </p>
+		<p> Here is the payoff matrix of the game. </p>
 
-		<text x="25%" y="50" fill="#f4656d" opacity="1">P2</text>
-		<text x="10%" y="70" fill="#008eb3" opacity="1">P1</text>
-		<text class="full p1 p2 p1c" x="42%" y="50" fill="#f4656d" opacity="1">Cooperate</text>
-		<text class="full p1 p2 p1d" x="73%" y="50" fill="#f4656d" opacity="1">Defect</text>
-		<text class="full p1 p2 p2c" x="10%" y="150" fill="#008eb3" opacity="1">Cooperate</text>
-		<text class="full p1 p1c p1n" x="45%" y="150" fill="#008eb3" opacity="1">3</text>
-		<text class="full p2 p2n p2c" x="55%" y="150" fill="#f4656d" opacity="1">3</text>
-		<text class="full p1 p1d p1n" x="75%" y="150" fill="#008eb3" opacity="1">0</text>
-		<text class="full p2 p2n p2c" x="85%" y="150" fill="#f4656d" opacity="1">4</text>
-		<text class="fulls p2c p2cs" x="90%" y="150" fill="#f4656d" opacity="0">*</text>
-		<text class="full p1 p2 p2d" x="10%" y="230" fill="#008eb3" opacity="1">Defect</text>
-		<text class="fulls p1cs p1c" x="40%" y="230" fill="#008eb3" opacity="0">*</text>
-		<text class="full p1 p1c p1n" x="45%" y="230" fill="#008eb3" opacity="1">4</text>
-		<text  class="full p2 p2n p2d" x="55%" y="230" fill="#f4656d" opacity="1">0</text>
-		<text class="fulls p1d p1ds p1n" x="70%" y="230" fill="#008eb3" opacity="0">*</text>  
-		<text class="full p1 p1d p1n" x="75%" y="230" fill="#008eb3" opacity="1">1</text>
-		<text class="full p2 p2n p2d"  x="85%" y="230" fill="#f4656d" opacity="1">1</text>
-		<text class="fulls p2d p2ds"  x="90%" y="230" fill="#f4656d" opacity="0">*</text>
-	    </svg>
-	</div>
+		<svg>
+		    <rect x="5%" y="20" width="30%" height="80"/>
+		    <rect x="35%" y="20" width="30%" height="80"/>
+		    <rect x="65%" y="20" width="30%" height="80"/>
+		    
+		    <line x1="5%" y1="20" x2="35%" y2="100"/> 
+		    
+		    <rect x="5%" y="100" width="30%" height="80"/>
+		    <rect x="35%" y="100" width="30%" height="80"/>
+		    <rect x="65%" y="100" width="30%" height="80"/>
+		    
+		    <rect x="5%" y="180" width="30%" height="80"/>
+		    <rect x="35%" y="180" width="30%" height="80"/>
+		    <rect x="65%" y="180" width="30%" height="80"/>
+		    
+		    <text x="25%" y="50" fill="#f4656d" opacity="1">P2</text>
+		    <text x="10%" y="70" fill="#008eb3" opacity="1">P1</text>
+		    <text x="42%" y="50" fill="#f4656d" opacity="1">Cooperate</text>
+		    <text x="73%" y="50" fill="#f4656d" opacity="1">Defect</text>
+		    <text x="10%" y="150" fill="#008eb3" opacity="1">Cooperate</text>
+		    <text x="45%" y="150" fill="#008eb3" opacity="1">3</text>
+		    <text x="55%" y="150" fill="#f4656d" opacity="1">3</text>
+		    <text x="75%" y="150" fill="#008eb3" opacity="1">0</text>
+		    <text x="85%" y="150" fill="#f4656d" opacity="1">4</text>
+		    <text x="90%" y="150" fill="#f4656d" opacity="0">*</text>
+		    <text x="10%" y="230" fill="#008eb3" opacity="1">Defect</text>
+		    <text x="40%" y="230" fill="#008eb3" opacity="0">*</text>
+		    <text x="45%" y="230" fill="#008eb3" opacity="1">4</text>
+		    <text x="55%" y="230" fill="#f4656d" opacity="1">0</text>
+		    <text x="70%" y="230" fill="#008eb3" opacity="0">*</text>  
+		    <text x="75%" y="230" fill="#008eb3" opacity="1">1</text>
+		    <text x="85%" y="230" fill="#f4656d" opacity="1">1</text>
+		    <text x="90%" y="230" fill="#f4656d" opacity="0">*</text>
+		</svg>
+	    <p>Let's say we play the game for 10 rounds between two players:</p>
+	    <div class="game">
 
-	<p>	Let's say we play the game for 10 rounds between two players:</p>
-	<div class="game">
+		<code class="game1" > Player 1: &#9822; : C C D D C C D D C C</code> <br> 
+		<code class="game2">Player 2: &#9820; : D D C C D D C C D D</code>
+	    </div>
 
-	<code class="game1" > Player 1: &#9822; : C C D D C C D D C C</code> <br> 
-	<code class="game2">Player 2: &#9820; : D D C C D D C C D D</code>
-	</div>
-
-	<p> We can see that in each round there are 2 possible actions hence a game with 10 rounds would have a strategy set containing of 2<sup>10</sup> possible strategies. If we draw the payoff matrix of that game, it would be a very big one and it becomes incredibly difficult to calculate a solution analytically. Worse, if we suppose to play the game infinitely, then the number of strategy becomes 2<sup>&infin;</sup>. The repitition of this game, therefore, motivates a general problem of searching for optima in vast space. Exactly why the neurons fire up about computer simulation. Yay!</p> 
-	
-	<p>
-	<strong> Exercise </strong> Can you do it for the following game: the Nash Demand Game in which there is 10 euro to be divided between two players. Each player can claim 2, 5 or 8 out of 10 which is equivalent to a Low, Medium or High portion of the pie, if the prize is ever interpreted as a pie. If the two claims sum up to be less than or equal 10, each gets what they wants, otherwise both get zero.
-	</p>
-	<table>
-	    <tr>
-		<th>P1 \ P2 </th>
-		<th>Low</th>
-		<th>Medium</th>
-		<th> High  </th>
-	    </tr>
-	    <tr>
-		<td>Low</td>
-		<td>2 2</td>
-		<td>2 5</td>
-		<td class="ne"> 2 8 </td>
-	    </tr>
-	    <tr>
+	    <p> We can see that in each round there are 2 possible actions hence a game with 10 rounds would have a strategy set containing of 2<sup>10</sup> possible strategies. If we draw the payoff matrix of that game, it would be a very big one and it becomes incredibly difficult to calculate a solution analytically. Worse, if we suppose to play the game infinitely, then the number of strategy becomes 2<sup>&infin;</sup>. The repitition of this game, therefore, motivates a general problem of searching for optima in vast space. Exactly why the neurons fire up about computer simulation. Yay!</p> 
+	      <h1> Exercise section 0 </h1>
+	      <p>	      <strong> Exercise </strong> Can you think about the following game: the Nash Demand Game in which there is 10 euro to be divided between two players. Each player can claim 2, 5 or 8 out of 10 which is equivalent to a Low, Medium or High portion of the pie, if the prize is ever interpreted as a pie. If the two claims sum up to be less than or equal 10, each gets what they wants, otherwise both get zero.
+	  </p>
+	  <table>
+	      <tr>
+		  <th>P1 \ P2 </th>
+		  <th>Low</th>
+		  <th>Medium</th>
+		  <th> High  </th>
+	      </tr>
+	      <tr>
+		  <td>Low</td>
+		  <td>2 2</td>
+		  <td>2 5</td>
+		  <td class="ne"> 2 8 </td>
+	      </tr>
+	      <tr>
 		<td>Medium</td>
 		<td>5 2</td>
 		<td class="ne">5 5</td>
 		<td> 0 0 </td>
-	    </tr>
-	    <tr>
-		<td> High </td>
-		<td class="ne"> 8 2 </td>
-		<td> 0 0 </td>
-		<td> 0 0 </td>
-	    </tr>
-	</table>
-	<p> > <span class="ans">  </span></p>
-	<script>
-	 
-	 function colorne() {
+	      </tr>
+	      <tr>
+		  <td> High </td>
+		  <td class="ne"> 8 2 </td>
+		  <td> 0 0 </td>
+		  <td> 0 0 </td>
+	      </tr>
+	  </table>
+	  <p> > <span class="ans">  </span></p>
 
-	     nes = document.querySelectorAll("table td.ne");
-	     nes.forEach(function (element) { element.style = "color:#f4656d"  });
-	     document.querySelector("span.ans").innerHTML = "In each round, there are 3 possible actions. Hence, for a repeated game of n rounds, the number of strategies is 3<sup>n</sup>."
-
-	 }
-	</script>
-
-	<button type="button" onclick="colorne()">Answer</button>
+	<p>	<button type="button" onclick="answer()">Answer</button></p>
 	<footer>
 	  <a href ="gitlab.com/ayaderaghul/thesis"> Gitlab Project </a> | Made with <span style="color:#f4656d">&#9829;</span> | <a href="github.com/ayaderaghul" style="color:#bb8f5b">Aya de Raghũl</a> | <img src="mint.jpg" width="2%">
 	</footer>
 
     </div>
-    <div class="col">
+
     <nav>
 	<ul>
-	  <li> <a href="intro.html"> Introduction </a> </li>
-	  <li> <a href="game.html"> The Game </a> </li>
-	  <li> <a href="repeated.html"> The Repeated Game</a> </li>
-	  <li> <a href="representation.html"> Strategy Representation </a></li>
-	  <li> <a href="cycle.html"> Simulation Cycle </a></li>
-	  <li> <a href="fitness.html"> Fitness Calculation </a></li>
-	  <li> <a href="run.html"> Run </a></li>
-	  <img src="jane.jpg" width="90%">
-	  <span style="color:#bb8f5b">courtesy: t.hu</span>
+	  <li> <a href="intro.html"> 0. Introduction </a> </li>
+	  <li> <a href="game.html"> I. The Game </a> </li>
+	  <li> <a href="repeated.html"> II. The Repeated Game</a> </li>
+	  <li> <a href="representation.html"> III. Strategy Representation </a></li>
+	  <li> <a href="cycle.html"> IV. Simulation Cycle </a></li>
+	  <li> <a href="fitness.html"> V. Fitness Calculation </a></li>
+	  <li> <a href="run.html"> VI. Run </a></li>
+	  <div class="courtesy">
+	      <img src="damascus.jpg">
+	      <p>courtesy: c.hi</p>
+	  </div>
 	</ul>
     </nav>
-	  </div>
+
 
 
 </body>

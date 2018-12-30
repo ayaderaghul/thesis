@@ -1,0 +1,124 @@
+     * {
+	 box-sizing: border-box;
+     }
+     body {
+	 display: flex;
+	 flex-direction: row;
+	 font-family: helvetica, arial, sans;
+	 padding: 0 2% 2% 2%;
+     }
+
+     header {
+	 font-size: 3em;
+	 font-weight: bold;
+	 text-align: center;
+	 background-color: #008eb3;
+	 color: white;
+	 padding: 2%;
+	 margin: 2% 0 2% 0;
+     }
+
+     h1 {
+     	color:#008eb3;
+     }
+     .content {
+	 display: flex;
+	 flex-direction: column;
+	 width: 75%;
+     }
+
+     svg {
+	 width: 80%;
+	 height: 330px;
+	 margin: auto;
+     }
+ 
+     nav {
+	width: 23%;
+	 border: 1px dashed #bb8f5b;
+	 margin: 1.5%;
+	 padding: 1% 1% 1% 0;
+     }
+     footer {
+	 margin: 3% 0
+     }
+     ul {
+	 list-style: none;
+	 padding: 0% 10%;
+     }
+     li {
+	 margin: 2% 0;
+     }
+     a {
+	 color: #008eb3;
+	 text-decoration: none;
+     }
+     a:hover {
+	 text-decoration: underline;
+     }
+     button:hover {
+	 background-color: #f4656d;
+     }
+
+     .caption{
+     	height: 80px;
+     }
+     .cap0, .cap1, .cap3 {
+     	display: inline;
+     }
+
+     rect {
+	 fill:ghostwhite;
+	 stroke-width:1;
+	 stroke:#a7e5e0;
+	 opacity: 0.8;
+     }
+     line {
+	 stroke:#a7e5e0;stroke-width:1
+     }
+     text {
+	 font-size: 1.5em;
+	 font-weight: bold;
+     }
+     .courtesy {
+     	text-align: center;
+	 padding: 5% 0%;
+     }
+     .courtesy p {
+	 color: #bb8f5b;
+
+     }
+     .courtesy img {
+     	width: 90%;
+     }
+     button {
+	 background-color: #e4dbbe;
+	 padding: 1% 2%;
+	 margin: 2px;
+	 border: none;
+     }
+     table {
+     	font-size: 2vw;
+	 width: 60%;
+	 margin: 5% 20%
+     }
+     table, th, td {	 
+	 text-align:center;
+	 border-collapse: collapse;
+	 border: 1px solid black;	 
+     }
+     .game {
+	 background-color: ghostwhite;
+	 padding: 2% 2%;
+	 display: inline-block;
+	 border-radius: 10px;
+     }
+     .game1 {
+	 color:#f4656d;
+	 font-size:2vw;	 
+     }
+     .game2 {
+	 font-size: 2vw;
+	 color:#008eb3;
+     }
+

@@ -1,0 +1,108 @@
+     * {
+	 box-sizing: border-box;
+     }
+     body {
+	 display: flex;
+	 flex-direction: row;
+	 font-family: helvetica, arial, sans;
+	 padding: 2%;
+     }
+     a {
+	 color: #008eb3;
+     }
+     header {
+	 font-size: 3em;
+	 font-weight: bold;
+	 text-align: center;
+	 background-color: #008eb3;
+	 color: white;
+	 padding: 2%;
+	 margin: 2% 0 2% 0;
+     }
+     intro {
+	 margin: 2%;
+     }
+     .content {
+	 display: flex;
+	 flex-direction: column;
+	 width: 60%;
+     }
+     svg {
+	 width: 80%;
+	 height: 330px;
+	 margin: 2%;
+     }
+ 
+     nav {
+	width: 35%;
+	 border: 1px dashed #bb8f5b;
+	 margin: 5%;
+	 padding: 1% 1% 1% 0;
+     }
+     footer {
+	 margin: 3% 0
+     }
+     ul {
+	 list-style: none;
+     }
+     li {
+	 margin: 3%
+     }
+     a {
+	 color: #008eb3;
+	 text-decoration: none;
+     }
+     a:hover {
+	 text-decoration: underline;
+     }
+     button:hover {
+	 background-color: #f4656d;
+     }
+     rect {
+	 fill:ghostwhite;
+	 stroke-width:1;
+	 stroke:#a7e5e0;
+	 opacity: 0.8;
+     }
+     line {
+	 stroke:#a7e5e0;stroke-width:1
+     }
+     text {
+	 font-size: 1.5em;
+	 font-weight: bold;
+     }
+     courtesy {
+	 font-color: #bb8f5b
+     }
+     button {
+	 background-color: #e4dbbe;
+	 padding: 1% 2%;
+	 margin: 2px;
+	 border: none;
+     }
+     table {
+	 width: 60%;
+	 margin: 5% 20%
+     }
+     table, th, td {	 
+	 text-align:center;
+	 border-collapse: collapse;
+	 border: 1px solid black;	 
+     }
+     .game {
+	 background-color: ghostwhite;
+	 padding: 2% 2%;
+	 display: inline-block;
+	 border-radius: 10px;
+     }
+     .game1 {
+	 color:#f4656d;
+	 font-size:2vw;	 
+     }
+     .game2 {
+	 font-size: 2vw;
+	 color:#008eb3;
+     }
+     .ans {
+	 color: #008eb3;
+     }

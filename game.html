@@ -1,246 +1,62 @@
 <!doctype html>
 <html>
-<head>
-    <style>
-     * {
-	 box-sizing: border-box;
-     }
-     body {
-	 display: flex;
-	 flex-direction: row;
-	 font-family: helvetica, arial, sans;
-	 padding: 5%;
-     }
-     a {
-	 color: #008eb3;
-     }
-     header {
-	 font-size: 3em;
-	 font-weight: bold;
-	 text-align: center;
-	 background-color: #008eb3;
-	 color: white;
-	 padding: 2%;
-	 margin: 2% 0 2% 0;
-     }
-     intro {
-	 margin: 2%;
-     }
-     content {
-	 display: flex;
-	 flex-direction: column;
-	 width: 65%;
-     }
-     svg {
-	 width: 80%;
-	 height: 330px;
-	 margin: 2%;
-     }
-     nav {
-	 width: 50%;
-	 border: 1px dashed #bb8f5b;
-	 margin: 1.5%;
-	 padding: 1% 1% 1% 0;
-	 
-     }
-     footer {
-	 margin: 3% 0
-     }
-     ul {
-	 list-style: none;
-	 
-     }
-     li {
-	 margin: 3%
-     }
-     a {
-	 color: #008eb3;
-	 text-decoration: none;
-     }
-     a:hover {
-	 text-decoration: underline;
-     }
-     button:hover {
-	 background-color: #f4656d;
-     }
-
-     rect {
-	 fill:ghostwhite;
-	 stroke-width:1;
-	 stroke:#a7e5e0;
-	 opacity: 0.8;
-     }
-     line {
-	 stroke:#a7e5e0;stroke-width:1
-     }
-     text {
-	 font-size: 1.5em;
-	 font-weight: bold;
-     }
-     courtesy {
-	 font-color: #bb8f5b
-     }
-     button {
-	 background-color: #e4dbbe;
-	 padding: 1% 2%;
-	 margin: 2px;
-	 border: none;
-     }
-     table {
-	 width: 60%;
-	 margin: 5% 20%
-     }
-     table, th, td {	 
-	 text-align:center;
-	 border-collapse: collapse;
-	 border: 1px solid black;	 
-     }
-    </style>
-    <script>
-     
-     function onoff(element, value) {
-	 let o = parseFloat(element.getAttributeNS(null, 'opacity'));
-	 element.setAttributeNS(null, 'opacity', value);
-     }
-     function narrate(str) {
-	 document.querySelector("p.cap").innerHTML = str
-     }
-     function selectall(classtr) {
-	 let s = "text." + classtr; 
-	 return document.querySelectorAll(s);
-     }
-     function select(classtr) {
-	 let s = "text." + classtr;
-	 return document.querySelector(s);
-     }
-     function onoffall(classtr, value, str) {
-	 let all = selectall(classtr);
-	 all.forEach(function (element) { onoff(element, value) });
-	 narrate(str);
-     }
-
-     function step0() {
-	 onoffall("full", "1", "");
-     }
-     function step1() {
-	 onoffall("p2n", "0", "This is what it looks like from the player 1's point of view.");
-     }
-     function step2() {
-	 onoffall("p1d", "0", "P1 proceeds to think about the course of action of P2: what if P2 cooperates?");
-     }
-     function step3() {
-	 let s3 = select("p1cs");
-	 onoff(s3, "1");
-	 narrate("If P2 cooperates, I have 2 choices: to cooperate or to defect. If I cooperate, I get 3. If I defect, I get 4. Because 4 > 3, I choose to defect. A star is put next to number 4. <br> <i>Weak assumption of rationality: A bigger payoff is prefered.</i>")
-     }
-     function step4() {
-	 onoffall("p1c","0","");
-	 onoffall("p1d", "1", "If P2 defects, I have 2 choices: to cooperate to get 0 or to defect to get 1. Because 1 > 0, I choose to defect. A star is put next to number 1. <br> <i>Weak assumption of rationality: A bigger payoff is preferred</i>");
-
-     }
-     function step5() {
-	 onoffall("p1n","0","");
-	 onoffall("p2", "1","Now let's stand in Player 2's shoes.");
-
-     }
-     function step6() {
-	 let s6 = select("p2cs");
-	 onoff(s6, "1");
-	 onoffall("p2d","0","P2 thinks that: if P1 cooperates, I can get 3 or 4 depending whether I cooperate or defect. Because 4 > 3, I prefer to defect. <br> <i> Weak assumption of rationality: A bigger payoff is preferred</i>");
-
-     }
-     function step7() {
-	 onoffall("p2c","0","");
-	 let s7 = select("p2ds");
-	 onoff(s7, "1");
-	 onoffall("p2d","1","P2 thinks that: if P1 defects, I can get 0 or 1 depending whether I cooperate or defect. Because 1 > 0, I prefer to defect. <br> <i> Weak assumption of rationality: A bigger payoff is preferred</i>");
-
-     }
-     function step8() {
-	 onoffall("full", "1", "");
-	 onoffall("fulls","1","You see that the cell with two stars is the fixedd point between two players' reasoning. It is a Nash equilibrium.");
-
-     }
-     
-     document.onkeydown = function(e) {
-	 switch (e.keyCode) {
-	     case 48:
-		 step0(); break;
-	     case 49:
-		 step1(); break;	
-	     case 50:
-		 step2(); break;
-	     case 51:
-		 step3(); break;
-	     case 52:
-		 step4(); break;
-	     case 53:
-		 step5(); break;
-	     case 54:
-		 step6(); break;
-	     case 55:
-		 step7(); break;
-	     case 56:
-		 step8(); break;
-	 }
-     }
-     
-    </script>
-
-</head>
-<body>
-    <div class="content">
-	
-	<header>The Game</header>
-	<div class="intro"> 	
-	    <strong> Press 0 to reset. Press the numeric keys (1, 2,..8) to go through the section. Or click the following numeric buttons.  </strong>
-	    <br>
-	    <span> <button type="button" onclick="step0()">0</button><button type="button" onclick="step1()">1</button><button type="button" onclick="step2()">2</button><button type="button" onclick="step3()">3</button><button type="button" onclick="step4()">4</button><button type="button" onclick="step5()">5</button><button type="button" onclick="step6()">6</button><button type="button" onclick="step7()">7</button><button type="button" onclick="step8()">8</button> </span>
+    <head>
+		<link rel="stylesheet" type="text/css" href="style.css">   
+		<script type="text/javascript" src="main.js"></script>
+    </head>
+    <body>
+		<div class="content">
+	    	<header>I. The Game</header>
+	    	<div>
+	    	<h1> Interactive section 0 </h1>
+					<p><strong> Click 0 to reset. Click the numeric buttons to go through this section. </strong></p>
+				<p><span> <button type="button" onclick="step0()">0</button><button type="button" onclick="step1()">1</button><button type="button" onclick="step2()">2</button><button type="button" onclick="step3()">3</button><button type="button" onclick="step4()">4</button><button type="button" onclick="step5()">5</button><button type="button" onclick="step6()">6</button><button type="button" onclick="step7()">7</button><button type="button" onclick="step8()">8</button> </span></p>
 	    
-	    <p> Hello, first of all, let's see the most popular game: the Prisoner's Dilemma. </p>
+				<p> First of all, let's consider the payoff matrix of the most popular game: the Prisoner's Dilemma. </p>
 	    
-	    <div> >  <p class="cap" style="display: inline">
-		Here is the payoff matrix of the game.
-	    </p></div>
-	</div>
-	<div class="frame">
-	    <svg>
-		<rect x="5%" y="20" width="30%" height="80"/>
-		<rect x="35%" y="20" width="30%" height="80"/>
-		<rect x="65%" y="20" width="30%" height="80"/>
-		
-		<line x1="5%" y1="20" x2="35%" y2="100"/> 
-		
-		<rect x="5%" y="100" width="30%" height="80"/>
-		<rect x="35%" y="100" width="30%" height="80"/>
-		<rect x="65%" y="100" width="30%" height="80"/>
-		
-		<rect x="5%" y="180" width="30%" height="80"/>
-		<rect x="35%" y="180" width="30%" height="80"/>
-		<rect x="65%" y="180" width="30%" height="80"/>
+				<div class="caption"> >  <p class="cap0">
+				</p></div>
+</div>	    	
 
-		<text x="25%" y="50" fill="#f4656d" opacity="1">P2</text>
-		<text x="10%" y="70" fill="#008eb3" opacity="1">P1</text>
-		<text class="full p1 p2 p1c" x="42%" y="50" fill="#f4656d" opacity="1">Cooperate</text>
-		<text class="full p1 p2 p1d" x="73%" y="50" fill="#f4656d" opacity="1">Defect</text>
-		<text class="full p1 p2 p2c" x="10%" y="150" fill="#008eb3" opacity="1">Cooperate</text>
-		<text class="full p1 p1c p1n" x="45%" y="150" fill="#008eb3" opacity="1">3</text>
-		<text class="full p2 p2n p2c" x="55%" y="150" fill="#f4656d" opacity="1">3</text>
-		<text class="full p1 p1d p1n" x="75%" y="150" fill="#008eb3" opacity="1">0</text>
-		<text class="full p2 p2n p2c" x="85%" y="150" fill="#f4656d" opacity="1">4</text>
-		<text class="fulls p2c p2cs" x="90%" y="150" fill="#f4656d" opacity="0">*</text>
-		<text class="full p1 p2 p2d" x="10%" y="230" fill="#008eb3" opacity="1">Defect</text>
-		<text class="fulls p1cs p1c" x="40%" y="230" fill="#008eb3" opacity="0">*</text>
-		<text class="full p1 p1c p1n" x="45%" y="230" fill="#008eb3" opacity="1">4</text>
-		<text  class="full p2 p2n p2d" x="55%" y="230" fill="#f4656d" opacity="1">0</text>
-		<text class="fulls p1d p1ds p1n" x="70%" y="230" fill="#008eb3" opacity="0">*</text>  
-		<text class="full p1 p1d p1n" x="75%" y="230" fill="#008eb3" opacity="1">1</text>
-		<text class="full p2 p2n p2d"  x="85%" y="230" fill="#f4656d" opacity="1">1</text>
-		<text class="fulls p2d p2ds"  x="90%" y="230" fill="#f4656d" opacity="0">*</text>
-	    </svg>
-	</div>
-	<strong> Exercise </strong> Can you do it for the following game: the Nash Demand Game in which there is 10 euro to be divided between two players. Each player can claim 2, 5 or 8 out of 10 which is equivalent to a Low, Medium or High portion of the pie, if the prize is ever interpreted as a pie. If the two claims sum up to be less than or equal 10, each gets what they wants, otherwise both get zero.
+		<svg>
+		    <rect x="5%" y="20" width="30%" height="80"/>
+		    <rect x="35%" y="20" width="30%" height="80"/>
+		    <rect x="65%" y="20" width="30%" height="80"/>
+		    
+		    <line x1="5%" y1="20" x2="35%" y2="100"/> 
+		
+		    <rect x="5%" y="100" width="30%" height="80"/>
+		    <rect x="35%" y="100" width="30%" height="80"/>
+		    <rect x="65%" y="100" width="30%" height="80"/>
+		
+		    <rect x="5%" y="180" width="30%" height="80"/>
+		    <rect x="35%" y="180" width="30%" height="80"/>
+		    <rect x="65%" y="180" width="30%" height="80"/>
 
+		    <text x="25%" y="50" fill="#f4656d" opacity="1">P2</text>
+		    <text x="10%" y="70" fill="#008eb3" opacity="1">P1</text>
+		    <text class="reset0 p1payp2c0 p2strat0" x="42%" y="50" fill="#f4656d" opacity="1">Cooperate</text>
+		    <text class="reset0 p1payp2d0" x="73%" y="50" fill="#f4656d" opacity="1">Defect</text>
+		    
+		    <text class="reset0 p2payp1c0" x="10%" y="150" fill="#008eb3" opacity="1">Cooperate</text>
+		    <text class="reset0 p1payp2c0" x="45%" y="150" fill="#008eb3" opacity="1">3</text>
+		    <text class="reset0 p2pay0 p2payp1c0" x="55%" y="150" fill="#f4656d" opacity="1">3</text>
+		    <text class="reset0 p1payp2d0 p1pay0" x="75%" y="150" fill="#008eb3" opacity="1">0</text>
+		    <text class="reset0 p2pay0 p2payp1c0" x="85%" y="150" fill="#f4656d" opacity="1">4</text>
+		    <text class="star0 p2starp1c0" x="90%" y="150" fill="#f4656d" opacity="0">*</text>
+		    <text class="reset0 p2payp1d0" x="10%" y="230" fill="#008eb3" opacity="1">Defect</text>
+		    <text class="star0 p1starp2c0" x="40%" y="230" fill="#008eb3" opacity="0">*</text>
+		    <text class="reset0 p1payp2c0" x="45%" y="230" fill="#008eb3" opacity="1">4</text>
+		    <text  class="reset0 p2pay0 p2payp1d0"  x="55%" y="230" fill="#f4656d" opacity="1">0</text>
+		    <text class="star0 p1starp2d0" x="70%" y="230" fill="#008eb3" opacity="0">*</text>  
+		    <text class="reset0 p1payp2d0 p1pay0" x="75%" y="230" fill="#008eb3" opacity="1">1</text>
+		    <text class="reset0 p2pay0 p2payp1d0" x="85%" y="230" fill="#f4656d" opacity="1">1</text>
+		    <text class="star0 p2starp1d0"  x="90%" y="230" fill="#f4656d" opacity="0">*</text>
+		</svg>
+	    <h1> Exercise section 0 </h1>
+	    <p>
+	    <strong> Exercise </strong> Can you identify Nash Equilibrium for the following game: the Nash Demand Game in which there is 10 euro to be divided between two players. Each player can claim 2, 5 or 8 out of 10 which is equivalent to a Low, Medium or High portion of the pie, if the prize is ever interpreted as a pie. If the two claims sum up to be less than or equal 10, each gets what they wants, otherwise both get zero.
+</p>
 	<table>
 	    <tr>
 		<th>P1 \ P2 </th>
@@ -267,36 +83,32 @@
 		<td> 0 0 </td>
 	    </tr>
 	</table> 
-	<script>
-	 function colorne() {
-
-	     nes = document.querySelectorAll("table td.ne");
-	     nes.forEach(function (element) { element.style = "color:#f4656d"  });
-
-	 }
-	</script>
-
+	<p> > <span class="ans0">  </span></p>
+<p>
 	<button type="button" onclick="colorne()">Answer</button>
+</p>
 	<footer>
-	  <a href ="gitlab.com/ayaderaghul/thesis"> Gitlab Project </a> | Made with <span style="color:#f4656d">&#9829;</span> | <a href="github.com/ayaderaghul" style="color:#bb8f5b">Aya de Raghũl</a> | <img src="mint.jpg" width="2%">
+	    <a href ="gitlab.com/ayaderaghul/thesis"> Gitlab Project </a> | Made with <span style="color:#f4656d">&#9829;</span> | <a href="github.com/ayaderaghul" style="color:#bb8f5b">Aya de Raghũl</a> | <img src="mint.jpg" width="2%">
 	</footer>
-
-    </div>
-
-    <nav>
-	<ul>
-	  <li> <a href="intro.html"> Introduction </a> </li>
-	  <li> <a href="game.html"> The Game </a> </li>
-	  <li> <a href="repeated.html"> The Repeated Game</a> </li>
-	  <li> <a href="representation.html"> Strategy Representation </a></li>
-	  <li> <a href="cycle.html"> Simulation Cycle </a></li>
-	  <li> <a href="fitness.html"> Fitness Calculation </a></li>
-	  <li> <a href="run.html"> Run </a></li>
-	  <img src="jane.jpg" width="90%">
-	  <span style="color:#bb8f5b">courtesy: t.hu<span>
-	</ul>
-    </nav>
-    
+	
+	</div>
+	
+	<nav>
+	    <ul>
+		<li> <a href="intro.html"> 0. Introduction </a> </li>
+		<li> <a href="game.html"> I. The Game </a> </li>
+		<li> <a href="repeated.html"> II. The Repeated Game</a> </li>
+		<li> <a href="representation.html"> III. Strategy Representation </a></li>
+		<li> <a href="cycle.html"> IV. Simulation Cycle </a></li>
+		<li> <a href="fitness.html"> V. Fitness Calculation </a></li>
+		<li> <a href="run.html"> VI. Run </a></li>
+		<div class="courtesy">
+		    <img src="jane.jpg">
+		    <p>courtesy: t.hu</p>
+		</div>
+	    </ul>
+	</nav>
+	
 
  
 </body>
