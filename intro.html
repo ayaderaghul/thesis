@@ -5,11 +5,10 @@
     </head>
     <body>
 	<div class="content">
-		<div>
+	    <div>
 		<header>0. Introduction</header>
 		<p><i> Abstract: I simulate populations of agents playing games for fitness and the population evolves under an evolutionary algorithm. The Racket code is on my Github page, further information is on the Gitlab page of this project. The general sentiment is that I put the project in the freest form possible in accordance with local regulation. In the best case, you would get it in public domain under CC0.</i></p>  
 		<h1> Plain section 0</h1>
-		
 		<p> First of all, a player is a distinct set of interest. </p>
 		<p> Each player has a strategy set from which they can choose from. Their strategies would be combined into different possible outcomes in a matrix with corresponding payoffs. </p>
 		<p> For example, following is the payoff matrix of a very popular game: the Prisoner's Dilemma. In this game, there are 2 players and each has 2 possible strategies. Therefore there can be 4 possible outcomes. We would proceed to reason about this situation in the next section.
@@ -17,9 +16,10 @@
 	    </div>
 	    
 	    <svg>
-		    <rect x="5%" y="20" width="30%" height="80"/>
-		    <rect x="35%" y="20" width="30%" height="80"/>
-		    <rect x="65%" y="20" width="30%" height="80"/>
+
+		    <rect x="5%" y="20" width="30%" height="80" />
+		    <rect x="35%" y="20" width="30%" height="80" />
+		    <rect x="65%" y="20" width="30%" height="80" />
 	
 		    <line x1="5%" y1="20" x2="35%" y2="100"/> 
 	
@@ -31,25 +31,21 @@
 		    <rect x="35%" y="180" width="30%" height="80"/>
 		    <rect x="65%" y="180" width="30%" height="80"/>
 	
-		    <text x="25%" y="50" fill="#f4656d" opacity="1">P2</text>
-		    <text x="10%" y="70" fill="#008eb3" opacity="1">P1</text>
-		    <text x="42%" y="50" fill="#f4656d" opacity="1">Cooperate</text>
-		    <text x="73%" y="50" fill="#f4656d" opacity="1">Defect</text>
-		    <text x="10%" y="150" fill="#008eb3" opacity="1">Cooperate</text>
-		    <text x="45%" y="150" fill="#008eb3" opacity="1">3</text>
-		    <text x="55%" y="150" fill="#f4656d" opacity="1">3</text>
-		    <text x="75%" y="150" fill="#008eb3" opacity="1">0</text>
-		    <text x="85%" y="150" fill="#f4656d" opacity="1">4</text>
-		    <text x="90%" y="150" fill="#f4656d" opacity="0">*</text>
-		    
-		    <text x="10%" y="230" fill="#008eb3" opacity="1">Defect</text>
-		    <text x="40%" y="230" fill="#008eb3" opacity="0">*</text>
-		    <text x="45%" y="230" fill="#008eb3" opacity="1">4</text>
-		    <text x="55%" y="230" fill="#f4656d" opacity="1">0</text>
-		    <text x="70%" y="230" fill="#008eb3" opacity="0">*</text>  
-		    <text x="75%" y="230" fill="#008eb3" opacity="1">1</text>
-		    <text x="85%" y="230" fill="#f4656d" opacity="1">1</text>
-		    <text x="90%" y="230" fill="#f4656d" opacity="0">*</text>
+		    <text x="25%" y="50" fill="#f4656d">P2</text>
+		    <text x="10%" y="70" fill="#008eb3">P1</text>
+		    <text x="42%" y="50" fill="#f4656d">Cooperate</text>
+		    <text x="73%" y="50" fill="#f4656d">Defect</text>
+		    <text x="10%" y="150" fill="#008eb3">Cooperate</text>
+		    <text x="45%" y="150" fill="#008eb3">3</text>
+		    <text x="55%" y="150" fill="#f4656d">3</text>
+		    <text x="75%" y="150" fill="#008eb3">0</text>
+		    <text x="85%" y="150" fill="#f4656d">4</text>
+		   
+		    <text x="10%" y="230" fill="#008eb3">Defect</text>
+		    <text x="45%" y="230" fill="#008eb3">4</text>
+		    <text x="55%" y="230" fill="#f4656d">0</text>
+		    <text x="75%" y="230" fill="#008eb3">1</text>
+		    <text x="85%" y="230" fill="#f4656d">1</text>
 		</svg>
 	    
 	    <footer>

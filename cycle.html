@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="main.js"></script>
+    </head>
+    <body>
+	<div class="content">    
+	    <header>IV. Simulation Cycle </header>
+	    <div>
+	    <h1> Interactive section 0 </h1>
+	    <p> Imagine a world with many slots. We are going to fill these slots with a population of agents. In this project I would use a population of a fixed size N = 100 agents. Agents do agency: give them a contract, they execute the contract until terminated. Which means that we would give them different strategies.</p>
+	    <p><strong> Click 0 to reset. Click other numeric buttons to go through this section.</strong></p>
+	    <p><span><button type="button" onclick="IVstep0()">0</button><button type="button" onclick="IVstep1()">1</button><button type="button" onclick="IVstep2()">2</button><button type="button" onclick="IVstep3()">3</button><button type="button" onclick="IVstep4()">4</button><button type="button" onclick="IVstep5()">5</button><button type="button" onclick="IVstep6()">6</button><button type="button" onclick="IVstep7()">7</button> </span></p>
+	    <div class="caption" style="height: 180px"> >  <p class="cap0">In the begining, there is the population of agents.</p></div>
+	    </div>
+	    <svg width="100%" height="450">
+		<rect width="400" height="400" style="fill:#e4dbbe;stroke-width:3;stroke:#008eb3" />
+		<text class="phase" x="50" y="450" fill="black" opacity="0">MATCHING PHASE</text>
+
+		<g class="path" fill="none" stroke="#bb8f5b" stroke-width="10" stroke-dasharray="7,7" opacity="0">
+		    <path d="M 40 40 l60 30" />
+		    <path d="M 90 190 l120 -40" />
+		    <path d="M 150 350 l20 -120" />
+		    <path d="M 260 300 l90 60" />
+		    <path d="M 360 100 l-90 100" />
+		</g>
+
+		<circle cx="40" cy="40" r="20" fill="#bb8f5b" />
+		<circle cx="120" cy="80" r="20" fill="#008eb3" />
+		<circle cx="90" cy="190" r="20" fill="#f4656d" />	
+		<circle cx="220" cy="150" r="20" fill="#f4656d" />
+		<circle class="random" cx="150" cy="350" r="20" fill="#f4656d" />
+		<circle cx="170" cy="230" r="20" fill="#f4656d" />
+		<circle cx="260" cy="300" r="20" fill="#f4656d" />
+		<circle class="switch" cx="340" cy="350" r="20" fill="#008eb3" />
+		<circle cx="360" cy="100" r="20" fill="#a7e5e0" />
+		<circle cx="270" cy="200" r="20" fill="#008eb3" />
+
+		<path class="learn" d="M 200 400 q 20 -250 200 -100" stroke="#008eb3" stroke-dasharray="7,7" stroke-width="5" fill="none" opacity="0" />
+
+		<g class="pay" fill="ghostwhite" opacity="0">
+		    <text x="25" y="45" fill="ghostwhite">10</text>
+		    <text x="110" y="85" fill="ghostwhite">23</text>			<text x="80" y="195" fill="ghostwhite">50</text>
+		    <text x="210" y="155" fill="ghostwhite">50</text>
+		    <text x="140" y="355" fill="ghostwhite">50</text>
+		    <text x="160" y="235" fill="ghostwhite">50</text>
+		    <text x="250" y="305" fill="ghostwhite">0</text>
+		    <text x="330" y="355" fill="ghostwhite">0</text>
+		    <text x="350" y="105" fill="ghostwhite">40</text>
+		    <text x="260" y="205" fill="ghostwhite">15</text>
+		</g>
+		
+
+		<g class="fitness" opacity="0">
+		<circle cx="480" cy="20" r="20" fill="#bb8f5b" />
+		<text x="470" y="25" fill="ghostwhite">10</text>
+		<circle cx="480" cy="62" r="20" fill="#a7e5e0" />
+		<text x="470" y="67" fill="ghostwhite">40</text>
+		<circle cx="480" cy="104" r="20" fill="#f4656d" />	
+		<text x="470" y="109" fill="ghostwhite">50</text>
+		<circle cx="480" cy="146" r="20" fill="#f4656d" />
+		<text x="470" y="151" fill="ghostwhite">50</text>
+		<circle cx="480" cy="188" r="20" fill="#f4656d" />
+		<text x="470" y="193" fill="ghostwhite">50</text>
+		<circle cx="480" cy="230" r="20" fill="#f4656d" />
+		<text x="470" y="235" fill="ghostwhite">50</text>
+		<circle cx="480" cy="272" r="20" fill="#f4656d" />
+		<text x="470" y="277" fill="ghostwhite">0</text>
+		<circle cx="480" cy="314" r="20" fill="#008eb3" />
+		<text x="470" y="319" fill="ghostwhite">0</text>
+		<circle cx="480" cy="356" r="20" fill="#008eb3" />
+		<text x="470" y="361" fill="ghostwhite">23</text>
+		<circle cx="480" cy="398" r="20" fill="#008eb3" />
+		<text x="470" y="403" fill="ghostwhite">15</text>
+		
+		<text x="380" y="450" fill="black">SUM = 288</text>
+		</g>
+
+		<g class="relative" opacity="0">
+		    <rect x="550" y="0" width="60" height="15" style="fill:#bb8f5b;stroke:none" />
+
+		    <rect x="550" y="15" width="60" height="60" style="fill:#a7e5e0;stroke:none" />
+		    
+		    <rect x="550" y="75" width="60" height="290" style="fill:#f4656d;stroke:none" />
+		    <rect x="550" y="365" width="60" height="55" style="fill:#008eb3;stroke:none" />
+		    <g class="fittext">
+
+		    <text x="615" y="65" fill="#a7e5e0">40/288 = 14%</text>
+		    <text x="615" y="200" fill="#f4656d">200/288 = 70%</text>
+		    <text x="615" y="390" fill="#008eb3">38/288 = 12%</text>
+		    <text x="615" y="25" fill="#bb8f5b">10/288 = 4%</text>
+		    </g>
+		    <text x="530" y="450" fill="black">Fitness vector</text>
+
+		</g>
+	    </svg>
+
+	<footer>
+	  <a href ="gitlab.com/ayaderaghul/thesis"> Gitlab Project </a> | Made with <span style="color:#f4656d">&#9829;</span> | <a href="github.com/ayaderaghul" style="color:#bb8f5b">Aya de Raghũl</a> | <img src="mint.jpg" width="2%">
+	</footer>
+
+    </div>
+
+    <nav>
+	<ul>
+	  <li> <a href="intro.html"> 0. Introduction </a> </li>
+	  <li> <a href="game.html"> I. The Game </a> </li>
+	  <li> <a href="repeated.html"> II. The Repeated Game</a> </li>
+	  <li> <a href="representation.html"> III. Strategy Representation </a></li>
+	  <li> <a href="representation2.html"> III. Strategy Representation 2 </a></li>
+
+	  <li> <a href="cycle.html"> IV. Simulation Cycle </a></li>
+	  <li> <a href="fitness.html"> V. Fitness Calculation </a></li>
+	  <li> <a href="run.html"> VI. Run </a></li>
+	  <div class="courtesy">
+	    <img src="north.jpg">
+	    <p>courtesy: r.omas</p>
+</div>
+	</ul>
+    </nav>
+
+
+
+</body>
+</html>
